@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+    dash.ulagbulag.io/subject: mobilex-exp
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+      dash.ulagbulag.io/subject: mobilex-exp
+  template:
+    metadata:
+      labels:
+        app: frontend
+        dash.ulagbulag.io/subject: mobilex-exp
+    spec:
+      containers:
+      - name: server
+        image: 2paperstar/check-out-redirect:1.0.0
+        ports:
+        - name: http
+          protocol: TCP
+          containerPort: 80
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
